@@ -1,0 +1,29 @@
+import 'package:flutter/material.dart';
+import 'package:notepad_app/Constant/textstyle.dart';
+import 'package:notepad_app/State/homepage_state.dart';
+
+import 'package:share_plus/share_plus.dart';
+
+class ShareNote extends StatelessWidget {
+  HomePageState state;
+  int index;
+  BuildContext context;
+  ShareNote({required this.state, required this.index, required this.context});
+
+  @override
+  Widget build(BuildContext context) {
+    return TextButton(
+      onPressed: () {
+        // RenderBox? box = context.findRenderObject() as RenderBox?;
+        Share.share(
+          "title:\t${state.data[index].title} \ndescription:\t\n${state.data[index].desc} ",
+          // sharePositionOrigin: box!.localToGlobal(Offset.zero) & box.size
+        );
+      },
+      child: Text(
+        "share",
+        style: CustomTextStyle.kstyle1(),
+      ),
+    );
+  }
+}
